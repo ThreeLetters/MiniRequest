@@ -14,4 +14,6 @@ Copyright 2016 Andrew S
    limitations under the License.
 */
 
-const http=require("http"),https=require("https");module.exports=function(t,n){var e,s,h,l,o,i=!1,p="",u="";l=t.split("://"),i="https"==l[0]?!0:!1,o=l[1]?l[1]:l[0],l=o.split("/"),e=l[0],o=l[l.length-1].split(":"),o.length>1&&(u=parseInt(o[o.length-1]),l[l.length-1]=o.slice(0,o.length-1).join(":")),h=l[1]?l.slice(1).join("/"):"/",s=i?https:http;try{var r=s.request({host:e,path:h,port:u},function(t){t.setEncoding("utf8"),t.on("data",function(t){p+=t}),t.on("end",function(){n(!1,t.statusCode,p)})});r.end()}catch(c){n(c,null,null)}};
+const http=require("http"),https=require("https");var request = function(t,n){var e,s,h,l,o,i=!1,p="",u="";l=t.split("://"),i="https"==l[0]?!0:!1,o=l[1]?l[1]:l[0],l=o.split("/"),e=l[0],o=l[l.length-1].split(":"),o.length>1&&(u=parseInt(o[o.length-1]),l[l.length-1]=o.slice(0,o.length-1).join(":")),h=l[1]?l.slice(1).join("/"):"/",s=i?https:http;try{var r=s.request({host:e,path:h,port:u},function(t){t.setEncoding("utf8"),t.on("data",function(t){p+=t}),t.on("end",function(){n(!1,t.statusCode,p)})});r.end()}catch(c){n(c,null,null)}};
+
+module.exports = request; // change this line if you dont want this to be a seperate file
