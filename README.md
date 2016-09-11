@@ -3,10 +3,14 @@ Why use an entire npm library such as Request to just do a small task? so use Mi
 
 ## Documentation
 #### Usage
-> npm install minirequest
+
+do
 
 
-in code: 
+``npm install minirequest``
+
+
+then do in code: 
 
 
 ``var request = require('minirequests')``
