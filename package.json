@@ -1,0 +1,26 @@
+{
+  "name": "minirequest",
+  "version": "1.2.0",
+  "description": "A website html getter all in one file",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AJS-development/MiniRequest.git"
+  },
+  "keywords": [
+    "request",
+    "small",
+    "simplified",
+    "html",
+    "mini"
+  ],
+  "author": "andrews54757",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/AJS-development/MiniRequest/issues"
+  },
+  "homepage": "https://github.com/AJS-development/MiniRequest#readme"
+}
