@@ -34,7 +34,7 @@ var request = method.request({host:host,path:path,port:port}, function(res) {
     });
 
     res.on("end", function () {
-        callback(false,res.statusCode,body)
+        callback(false,res.statusCode,content)
     });
 });
 
