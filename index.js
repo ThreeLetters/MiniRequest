@@ -19,7 +19,7 @@ module.exports = function(url,callback) {
   var secure = false,
       host,
       method,
-      path,
+      path = "/",
       content = "",
       port = "",
       a,
@@ -35,7 +35,7 @@ if (a[0] == "https") secure = true; else secure = false;
    a[a.length - 1] = b.slice(0,b.length - 1).join(":"); 
   }
   
-  if (a[1]) path = a.slice(1).join("/"); else path = "/";
+  if (a[1]) path += a.slice(1).join("/");
   if (secure) {
     method = https;
   } else {
