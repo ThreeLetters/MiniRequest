@@ -6,12 +6,12 @@ module.exports = function(url,callback) {
       method,
       path,
       content = "",
-      port = "";,
+      port = "",
       a,
       b;
 a = url.split("://");
 if (a[0] == "https") secure = true; else secure = false;
-  b = a[1];
+  b = (a[1]) ? a[1] : a[0];
   a = b.split("/");
   host = a[0];
   b = a.slice(1); // needed
