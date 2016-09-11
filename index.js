@@ -14,14 +14,13 @@ if (a[0] == "https") secure = true; else secure = false;
   b = (a[1]) ? a[1] : a[0];
   a = b.split("/");
   host = a[0];
-  b = a.slice(1); // needed
-  a = b[b.length - 1];
-  a = a.split(":");
-  if (a.length > 1) {
-    port = parseInt(a[a.length - 1])
-   b[b.length - 1] = a.slice(0,a.length - 1).join(":"); 
+  b = a[a.length - 1].split(":");
+  if (b.length > 1) {
+    port = parseInt(b[b.length - 1])
+   a[a.length - 1] = b.slice(0,b.length - 1).join(":"); 
   }
-  path = b.join("/");
+  
+  if (a[1]) path = a.slice(1).join("/"); else path = "/";
   if (secure) {
     method = https;
   } else {
