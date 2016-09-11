@@ -14,6 +14,5 @@ Copyright 2016 Andrew S
    limitations under the License.
 */
 
-const http=require("http"),https=require("https");var request = function(t,n){var e,s,h,l,o,i=!1,p="",u="";l=t.split("://"),i="https"==l[0]?!0:!1,o=l[1]?l[1]:l[0],l=o.split("/"),e=l[0],o=l[l.length-1].split(":"),o.length>1&&(u=parseInt(o[o.length-1]),l[l.length-1]=o.slice(0,o.length-1).join(":")),h=l[1]?l.slice(1).join("/"):"/",s=i?https:http;try{var r=s.request({host:e,path:h,port:u},function(t){t.setEncoding("utf8"),t.on("data",function(t){p+=t}),t.on("end",function(){n(!1,t.statusCode,p)})});r.end()}catch(c){n(c,null,null)}};
-
-module.exports = request; // change this line if you dont want this to be a seperate file
+module.exports = function(t,n){var e,l,i,o,s,u=require("http"),h=require("https"),r=!1,p="",c="";o=t.split("://"),r="https"==o[0]?!0:!1,s=o[1]?o[1]:o[0],o=s.split("/"),e=o[0],s=o[o.length-1].split(":"),s.length>1&&(c=parseInt(s[s.length-1]),o[o.length-1]=s.slice(0,s.length-1).join(":")),i=o[1]?o.slice(1).join("/"):"/",l=r?h:u;try{var a=l.request({host:e,path:i,port:c},function(t){t.setEncoding("utf8"),t.on("data",function(t){p+=t}),t.on("end",function(){n(!1,t.statusCode,p)})});a.end()}catch(d){n(d,null,null)}};
+// replace "module.exports" with whatever variable you like if you would rather insert it right into your code
