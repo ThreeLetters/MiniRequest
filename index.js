@@ -28,7 +28,7 @@ if (a[0] == "https") secure = true; else secure = false;
     method = http;
   }
  try {
-var request = method.request(options, function(res) {
+var request = method.request({host:host,path:path,port:port}, function(res) {
     res.setEncoding("utf8");
     res.on("data", function (chunk) {
         content += chunk;
