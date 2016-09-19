@@ -1,3 +1,5 @@
+[![NPM] (https://img.shields.io/badge/Module-Npm-blue.svg)] (https://www.npmjs.com/package/minirequest)
+[![Donate] (https://img.shields.io/badge/Donate-Paypal-brightgreen.svg)] (paypal.me/andrews54757)
 # MiniRequest
 Why use an entire npm library such as Request to just do a small task? so use MiniRequest! It is all in one file (index.js) and if you dont want to use npm, use minified.js in your own projects! Dont want to have it in a separate file? Replace ``module.exports`` to whatever variable you want and put it in your code and you can use it by just calling that function! Works just like the request module
 
