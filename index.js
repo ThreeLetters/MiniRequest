@@ -52,6 +52,9 @@ var request = method.request({host:host,path:path,port:port}, function(res) {
         callback(false,res,content)
     });
 });
+    request.on('error',function(e) {
+       callback(e,null,null);
+    })
 
 request.end();
  } catch (e) {
