@@ -15,7 +15,7 @@ do
 then do in code: 
 
 
-``var request = require('minirequests')``
+``var request = require('minirequest')``
 
 
 or put minified.js into a file called request.js in your project and do
