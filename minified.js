@@ -14,5 +14,7 @@ Copyright 2016 Andrew S
    limitations under the License.
 */
 
-const http=require("http"),https=require("https");module.exports=function(t,n){var e,l,o,h,i=!1,s="/",p="",r="";o=t.split("://"),i="https"==o[0]?!0:!1,h=o[1]?o[1]:o[0],o=h.split("/"),e=o[0],h=o[o.length-1].split(":"),h.length>1&&(r=parseInt(h[h.length-1]),o[o.length-1]=h.slice(0,h.length-1).join(":")),o[1]&&(s+=o.slice(1).join("/")),l=i?https:http;try{var u=l.request({host:e,path:s,port:r},function(t){t.setEncoding("utf8"),t.on("data",function(t){p+=t}),t.on("end",function(){n(!1,t,p)})});u.on("error",function(t){n(t,null,null)}),u.end()}catch(c){n(c,null,null)}};
+var querystring=require("querystring"),http=require("http"),https=require("https");
+module.exports=function(e,c,f){var d=!1,h="/",k="",l="",a,b;c=querystring.stringify(c);a=e.split("://");d="https"==a[0]?!0:!1;b=a[1]?a[1]:a[0];a=b.split("/");e=a[0];b=a[a.length-1].split(":");1<b.length&&(l=parseInt(b[b.length-1]),a[a.length-1]=b.slice(0,b.length-1).join(":"));a[1]&&(h+=a.slice(1).join("/"));d=d?https:http;try{var g=d.request({host:e,path:h,port:l,method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded","Content-Length":Buffer.byteLength(c)}},function(a){a.setEncoding("utf8");
+a.on("data",function(a){k+=a});a.on("end",function(){f(!1,a,k)})});g.on("error",function(a){f(a,null,null)});g.write(c);g.end()}catch(m){f(m,null,null)}};
 // replace "module.exports" with whatever variable you like if you would rather insert it right into your code
