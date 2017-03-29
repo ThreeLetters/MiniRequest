@@ -32,9 +32,20 @@ or do this in your code
 
 #### Using the function
 ```
+// GET
+
 request('www.google.com',function(error,response,content) {
 if (!error && respone.statusCode = 200) {
 console.log(content)
 }
 });
+
+// POST
+
+request('www.google.com',somethingtosend,function(error,response,content) {
+if (!error && respone.statusCode = 200) {
+console.log(content)
+}
+});
+
 ```
