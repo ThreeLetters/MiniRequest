@@ -32,7 +32,9 @@ or do this in your code
 
 
 ```js
-var request = function(t,n){var e,l,i,o,s=require("http"),h=require("https"),r=!1,u="/",p="",c="";i=t.split("://"),r="https"==i[0]?!0:!1,o=i[1]?i[1]:i[0],i=o.split("/"),e=i[0],o=i[i.length-1].split(":"),o.length>1&&(c=parseInt(o[o.length-1]),i[i.length-1]=o.slice(0,o.length-1).join(":")),i[1]&&(u+=i.slice(1).join("/")),l=r?h:s;try{var a=l.request({host:e,path:u,port:c},function(t){t.setEncoding("utf8"),t.on("data",function(t){p+=t}),t.on("end",function(){n(!1,t,p)})});a.end()}catch(g){n(g,null,null)}};
+var querystring=require("querystring"),http=require("http"),https=require("https");
+module.exports=function(e,c,f){var d=!1,h="/",k="",l="",a,b;c=querystring.stringify(c);a=e.split("://");d="https"==a[0]?!0:!1;b=a[1]?a[1]:a[0];a=b.split("/");e=a[0];b=a[a.length-1].split(":");1<b.length&&(l=parseInt(b[b.length-1]),a[a.length-1]=b.slice(0,b.length-1).join(":"));a[1]&&(h+=a.slice(1).join("/"));d=d?https:http;try{var g=d.request({host:e,path:h,port:l,method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded","Content-Length":Buffer.byteLength(c)}},function(a){a.setEncoding("utf8");
+a.on("data",function(a){k+=a});a.on("end",function(){f(!1,a,k)})});g.on("error",function(a){f(a,null,null)});g.write(c);g.end()}catch(m){f(m,null,null)}};
 ```
 
 
