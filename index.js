@@ -13,9 +13,16 @@ Copyright 2016 Andrew S
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-const http = require('http')
+const http = require('http');
 const https = require('https');
-module.exports = function(url,callback) {
+const querystring = require('querystring');
+module.exports = function(/**/) {
+   var url = arguments[0]
+   var toSend = false;
+   if (arguments[2]) { // POST
+      toSend = querystring.stringify(arguments[1])
+         var callback = arguments[2];
+   } else var callback = arguments[1];
   var secure = false,
       host,
       method,
@@ -42,7 +49,7 @@ if (a[0] == "https") secure = true; else secure = false;
     method = http;
   }
  try {
-var request = method.request({host:host,path:path,port:port}, function(res) {
+var request = method.request((toSend) ? {host:host,path:path,port:port,method:"POST",headers: {'Content-Type': 'application/x-www-form-urlencoded','Content-Length': Buffer.byteLength(toSend)}} : {host:host,path:path,port:port}, function(res) {
     res.setEncoding("utf8");
     res.on("data", function (chunk) {
         content += chunk;
@@ -55,7 +62,7 @@ var request = method.request({host:host,path:path,port:port}, function(res) {
     request.on('error',function(e) {
        callback(e,null,null);
     })
-
+if (toSend) request.write(toSend)
 request.end();
  } catch (e) {
    callback(e,null,null);
