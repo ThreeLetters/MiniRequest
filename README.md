@@ -15,23 +15,29 @@ do
 then do in code: 
 
 
-``var request = require('minirequest')``
+```js
+var request = require('minirequest')
+```
 
 
 or put minified.js into a file called request.js in your project and do
 
 
-``var request = require('./request.js')``
+```js
+var request = require('./request.js')
+```
 
 
 or do this in your code
 
 
-``var request = function(t,n){var e,l,i,o,s=require("http"),h=require("https"),r=!1,u="/",p="",c="";i=t.split("://"),r="https"==i[0]?!0:!1,o=i[1]?i[1]:i[0],i=o.split("/"),e=i[0],o=i[i.length-1].split(":"),o.length>1&&(c=parseInt(o[o.length-1]),i[i.length-1]=o.slice(0,o.length-1).join(":")),i[1]&&(u+=i.slice(1).join("/")),l=r?h:s;try{var a=l.request({host:e,path:u,port:c},function(t){t.setEncoding("utf8"),t.on("data",function(t){p+=t}),t.on("end",function(){n(!1,t,p)})});a.end()}catch(g){n(g,null,null)}};``
+```js
+var request = function(t,n){var e,l,i,o,s=require("http"),h=require("https"),r=!1,u="/",p="",c="";i=t.split("://"),r="https"==i[0]?!0:!1,o=i[1]?i[1]:i[0],i=o.split("/"),e=i[0],o=i[i.length-1].split(":"),o.length>1&&(c=parseInt(o[o.length-1]),i[i.length-1]=o.slice(0,o.length-1).join(":")),i[1]&&(u+=i.slice(1).join("/")),l=r?h:s;try{var a=l.request({host:e,path:u,port:c},function(t){t.setEncoding("utf8"),t.on("data",function(t){p+=t}),t.on("end",function(){n(!1,t,p)})});a.end()}catch(g){n(g,null,null)}};
+```
 
 
 #### Using the function
-```
+```js
 // GET
 
 request('www.google.com',function(error,response,content) {
