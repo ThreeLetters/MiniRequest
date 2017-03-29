@@ -31,15 +31,15 @@ module.exports = function(/**/) {
       port = "",
       a,
       b;
-a = url.split("://");
-if (a[0] == "https") secure = true; else secure = false;
-  b = (a[1]) ? a[1] : a[0];
-  a = b.split("/");
-  host = a[0];
-  b = a[a.length - 1].split(":");
-  if (b.length > 1) {
-    port = parseInt(b[b.length - 1])
-   a[a.length - 1] = b.slice(0,b.length - 1).join(":"); 
+a = url.split("://"); // split url string
+if (a[0] == "https") secure = true; else secure = false; // check if using https
+  b = (a[1]) ? a[1] : a[0]; // b = hostname + ":" + port + path
+  a = b.split("/"); // split b
+ 
+  b = a[0].split(":")
+   host = b[0]; // host
+  if (b[1]) { // there is a port
+    port = parseInt(b[1])
   }
   
   if (a[1]) path += a.slice(1).join("/");
