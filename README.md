@@ -43,15 +43,18 @@ a.on("data",function(a){l+=a});a.on("end",function(){g(!1,a,l)})});k.on("error",
 // GET
 
 request('www.google.com',function(error,response,content) {
-if (!error && respone.statusCode = 200) {
+if (!error && response.statusCode = 200) {
 console.log(content)
 }
 });
 
 // POST
+var somethingtosend = {
+blah: "blah"
+}
 
 request('www.google.com',somethingtosend,function(error,response,content) {
-if (!error && respone.statusCode = 200) {
+if (!error && response.statusCode = 200) {
 console.log(content)
 }
 });
