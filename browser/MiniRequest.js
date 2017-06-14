@@ -17,12 +17,17 @@ Copyright 2016 Andrew S
 window.request = function(/**/) {
  var url = arguments[0],
      post = undefined,
-     callback;
+     callback,
+     bust = false;
    
    if (arguments[2]) { // post
       post = arguments[1];
       callback = arguments[2];
-   } else callback = arguments[1];
+      bust = arguments[3];
+   } else {
+      callback = arguments[1];
+      bust = arguments[2];
+   }
    try {
    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"); // IE support
    xhr.open(post ? 'POST' : 'GET', url + "?" + Date.now());
