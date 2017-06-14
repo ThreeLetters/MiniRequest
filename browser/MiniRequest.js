@@ -20,7 +20,7 @@ module.exports = function(/**/) {
    var url = arguments[0]
    var toSend = false;
    if (arguments[2]) { // POST
-      toSend = querystring.stringify(arguments[1])
+      toSend = querystring.stringify(arguments[1]) // stringify
          var callback = arguments[2];
    } else var callback = arguments[1];
   var secure = false,
@@ -29,42 +29,46 @@ module.exports = function(/**/) {
       path = "/",
       content = "",
       port = "",
-      a,
-      b;
-a = url.split("://"); // split url string
-if (a[0] == "https") secure = true; else secure = false; // check if using https
-  b = (a[1]) ? a[1] : a[0]; // b = hostname
-  a = b.split("/"); // split b into paths
+      urlSplit,
+      hostSplit;
+urlSplit = url.split("://"); // split url string into - method + "://" + host ...
+if (urlSplit[0] == "https") secure = true; else secure = false; // check if using https
+  urlSplit = (urlSplit[1]) ? urlSplit.slice(1).join("://") : urlSplit[0]; // remove https/http if there is one
+  urlSplit = urlSplit.split("/"); // split url by "/".
  
-  b = a[0].split(":")
-   host = b[0]; // host
-  if (b[1]) { // there is a port
-    port = parseInt(b[1])
+  hostSplit = urlSplit[0].split(":") // split host into - hostname + ":" + port
+   host = hostSplit[0]; // host
+  if (hostSplit[1]) { // there is a port
+    port = parseInt(hostSplit[1])
   }
   
-  if (a[1]) path += a.slice(1).join("/");
-  if (secure) {
+  if (urlSplit[1]) path += urlSplit.slice(1).join("/"); // Get path, excluding hostname
+   
+  if (secure) { // check if secure and set right class
     method = https;
   } else {
     method = http;
   }
- try {
-var request = method.request((toSend) ? {host:host,path:path,port:port,method:"POST",headers: {'Content-Type': 'application/x-www-form-urlencoded','Content-Length': Buffer.byteLength(toSend)}} : {host:host,path:path,port:port}, function(res) {
+ try { // error handling
+    
+    // check if it is a POST request.
+var options = (toSend) ? {host:host,path:path,port:port,method:"POST",headers: {'Content-Type': 'application/x-www-form-urlencoded','Content-Length': Buffer.byteLength(toSend)}} : {host:host,path:path,port:port}
+var request = method.request(options, function(res) {
     res.setEncoding("utf8");
     res.on("data", function (chunk) {
         content += chunk;
     });
 
-    res.on("end", function () {
+    res.on("end", function () { // done
         callback(false,res,content)
     });
 });
     request.on('error',function(e) {
-       callback(e,null,null);
+       callback(e,null,null); // error
     })
 if (toSend) request.write(toSend)
 request.end();
  } catch (e) {
-   callback(e,null,null);
+   callback(e,null,null); // error
  }
 }
