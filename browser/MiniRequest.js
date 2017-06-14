@@ -30,7 +30,7 @@ window.request = function(/**/) {
    }
    try {
    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"); // IE support
-   xhr.open(post ? 'POST' : 'GET', url + "?" + Date.now());
+   xhr.open(post ? 'POST' : 'GET', url + (bust ? ("?" + Date.now())) : "");
    xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
       if (xhr.status === 200) {
