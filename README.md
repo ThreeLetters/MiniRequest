@@ -59,4 +59,9 @@ console.log(content)
 }
 });
 
+// Cache Busting
+
+request(url,callback,true) // GET
+request(url,data,callback,true) // POST
+
 ```
