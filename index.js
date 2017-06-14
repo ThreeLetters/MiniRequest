@@ -49,6 +49,9 @@ if (urlSplit[0] == "https") secure = true; else secure = false; // check if usin
   } else {
     method = http;
   }
+   
+   host = host + "?" + Date.now(); // Bust da cache
+   
  try { // error handling
     
     // check if it is a POST request.
