@@ -15,6 +15,6 @@ Copyright 2016 Andrew S
 */
 
 var http=require("http"),https=require("https"),querystring=require("querystring");
-module.exports=function(f,b,c){var e=!1;if(c)var e=querystring.stringify(b),g=c;else g=b;var h=!1;b="/";var l="";c="";var a,d;a=f.split("://");h="https"==a[0]?!0:!1;d=a[1]?a[1]:a[0];a=d.split("/");d=a[0].split(":");f=d[0];d[1]&&(c=parseInt(d[1]));a[1]&&(b+=a.slice(1).join("/"));h=h?https:http;try{var k=h.request(e?{host:f,path:b,port:c,method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded","Content-Length":Buffer.byteLength(e)}}:{host:f,path:b,port:c},function(a){a.setEncoding("utf8");
-a.on("data",function(a){l+=a});a.on("end",function(){g(!1,a,l)})});k.on("error",function(a){g(a,null,null)});e&&k.write(e);k.end()}catch(m){g(m,null,null)}};
+module.exports=function(e,b,c){var d=!1;if(c){d=querystring.stringify(b);var f=c}else f=b;var g=!1;b="/";var l="";c="";var a=e.split("://");g="https"==a[0]?!0:!1;a=a[1]?a.slice(1).join("://"):a[0];a=a.split("/");var h=a[0].split(":");e=h[0];h[1]&&(c=parseInt(h[1]));a[1]&&(b+=a.slice(1).join("/"));g=g?https:http;try{var m=d?{host:e,path:b,port:c,method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded","Content-Length":Buffer.byteLength(d)}}:{host:e,path:b,port:c},k=g.request(m,function(a){a.setEncoding("utf8");
+a.on("data",function(a){l+=a});a.on("end",function(){f(!1,a,l)})});k.on("error",function(a){f(a,null,null)});d&&k.write(d);k.end()}catch(n){f(n,null,null)}};
 // replace "module.exports" with whatever variable you like if you would rather insert it right into your code
