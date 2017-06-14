@@ -19,10 +19,15 @@ const querystring = require('querystring');
 module.exports = function(/**/) {
    var url = arguments[0]
    var toSend = false;
+   var bust = false;
    if (arguments[2]) { // POST
       toSend = querystring.stringify(arguments[1]) // stringify
          var callback = arguments[2];
-   } else var callback = arguments[1];
+      bust = arguments[3];;
+   } else {
+      var callback = arguments[1];
+      bust = arguments[2];
+   }
   var secure = false,
       host,
       method,
@@ -50,7 +55,7 @@ if (urlSplit[0] == "https") secure = true; else secure = false; // check if usin
     method = http;
   }
    
-     path += "?" + Date.now(); // Bust da cache
+     if (bust) path += "?" + Date.now(); // Bust da cache
     
  try { // error handling
     
