@@ -33,7 +33,7 @@ module.exports = function(/**/) {
       hostSplit;
 urlSplit = url.split("://"); // split url string into - method + "://" + host ...
 if (urlSplit[0] == "https") secure = true; else secure = false; // check if using https
-  urlSplit = (urlSplit[1]) ? urlSplit.slice(1) : urlSplit[0]; // remove https/http if there is one
+  urlSplit = (urlSplit[1]) ? urlSplit.slice(1).join("://") : urlSplit[0]; // remove https/http if there is one
   urlSplit = urlSplit.split("/"); // split url by "/".
  
   hostSplit = urlSplit[0].split(":") // split host into - hostname + ":" + port
