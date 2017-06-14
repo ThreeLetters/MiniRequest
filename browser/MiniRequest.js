@@ -25,7 +25,7 @@ window.request = function(/**/) {
    } else callback = arguments[1];
    try {
    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"); // IE support
-   xhr.open(post ? 'POST' : 'GET', url);
+   xhr.open(post ? 'POST' : 'GET', url + "?" + Date.now());
    xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
       if (xhr.status === 200) {
