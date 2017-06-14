@@ -37,7 +37,15 @@ var request=function(f,b,c,d){var e=!1,h=!1;if(c){e=querystring.stringify(b);var
 path:b,port:c},l=d.request(n,function(a){a.setEncoding("utf8");a.on("data",function(a){m+=a});a.on("end",function(){g(!1,a,m)})});l.on("error",function(a){g(a,null,null)});e&&l.write(e);l.end()}catch(p){g(p,null,null)}};
 ```
 
+#### Browser
+There is a working browser version in browser/MiniRequest.js
 
+##### CDN
+> https://cdn.rawgit.com/ThreeLetters/MiniRequest/master/browser/MiniRequestMinified.js
+
+Script tag:
+
+> <script src="https://cdn.rawgit.com/ThreeLetters/MiniRequest/master/browser/MiniRequestMinified.js"></script>
 #### Using the function
 ```js
 // GET
